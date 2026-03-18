@@ -69,8 +69,8 @@
     .intro-block {
       display: grid;
 
-      /* 左边照片区域 180px，右边文字区域自适应 */
-      grid-template-columns: 220px 1fr;
+      /* 左边照片区域 180px，右边文字区域自适应，改文字大小 */
+      grid-template-columns: 200px 1fr;
 
       gap: 30px;              /* 照片和文字之间的距离 */
       align-items: start;
@@ -80,7 +80,7 @@
     .photo img {
       width: 100%;            /* 图片宽度占满左边容器 */
       display: block;
-      border-radius: 10px;    /* 图片圆角，想更方一点就改小，比如 4px */
+      border-radius: 5px;    /* 图片圆角，想更方一点就改小，比如 4px */
       object-fit: cover;
     }
 
@@ -234,7 +234,7 @@
         <h1>ZHUO YU</h1>
 
         <!-- ===== 这里改一句简短身份介绍 ===== -->
-        <div class="role">Student || Milk taster || Future millionaire</div>
+        <div class="role"><strong>Student || Milk taster || Future millionaire</strong>.</div>
 
         <!-- ===== 这里改联系方式 ===== -->
         <div class="info-line">
