@@ -2,97 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- 让手机和平板也能正常显示 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 网页标题：显示在浏览器标签页上 -->
   <title>ZHUO YU</title>
+
   <style>
+    /* =========================
+       1. 全局基础设置
+       ========================= */
+
+    :root {
+      /* 页面背景颜色 */
+      --bg: #ffffff;
+
+      /* 主文字颜色 */
+      --text: #111111;
+
+      /* 次级文字颜色：比如小标题、说明文字 */
+      --muted: #666666;
+
+      /* 分割线颜色 */
+      --line: #e9e9e9;
+
+      /* 浅灰色背景：小卡片、标签会用到 */
+      --soft: #f7f7f7;
+
+      /* 强调色：链接颜色 */
+      --accent: #2f5d8a;
+
+      /* 页面最大宽度
+         想让页面更宽一点：改大，比如 1120px
+         想让页面更窄更紧凑：改小，比如 960px */
+      --max-width: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      background: #ffffff;
-      color: #111111;
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.65;
+      background: var(--bg);
+      color: var(--text);
+
+      /* ===== 全站默认字体 =====
+         这里改字体最重要
+         你想换字体，就改这一行
+         
+         现在这套是现代、简洁、清爽风格
+         如果你想更正式，可以换成：
+         font-family: Georgia, "Times New Roman", serif;
+      */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+      line-height: 1.7;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 70px auto;
-      padding: 0 28px;
-    }
-
-    .top {
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      margin-bottom: 60px;
-    }
-
-    .photo {
-      width: 240px;
-      flex-shrink: 0;
-    }
-
-    .photo img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .intro {
-      flex: 1;
-    }
-
-    h1 {
-      font-size: 56px;
-      margin: 0 0 10px 0;
-      font-weight: 700;
-      color: #111111;
-    }
-
-    .subtitle {
-      font-size: 20px;
-      margin-bottom: 18px;
-      color: #222222;
-    }
-
-    .nav {
-      margin: 18px 0 22px 0;
-      font-size: 18px;
-    }
-
-    .nav a {
-      color: #2f79c7;
-      text-decoration: none;
-      margin-right: 18px;
-    }
-
-    .nav a:hover {
-      text-decoration: underline;
-    }
-
-    p {
-      font-size: 18px;
-      margin: 0 0 18px 0;
-    }
-
-    h2 {
-      font-size: 30px;
-      margin: 55px 0 20px 0;
-      font-weight: 700;
-      color: #111111;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 28px;
-    }
-
-    li {
-      font-size: 18px;
-      margin-bottom: 16px;
-    }
-
+    /* 全站链接样式 */
     a {
-      color: #2f79c7;
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -100,120 +74,537 @@
       text-decoration: underline;
     }
 
-    .section {
+    /* 页面主体宽度控制 */
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+
+      /* 左右留白，上下留白 */
+      padding: 0 24px 72px;
+    }
+
+    /* =========================
+       2. 顶部导航栏
+       ========================= */
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 48px;
+    }
+
+    .topbar-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 20px 24px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* 左上角小字，比如 Personal Website */
+    .brand {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* 右上角导航栏 */
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: #333333;
+      font-size: 15px; /* 导航文字大小 */
+    }
+
+    /* =========================
+       3. 首页头图区域（名字 + 介绍 + 照片）
+       ========================= */
+
+    .hero {
+      display: grid;
+
+      /* 左边文字区域，右边图片区域
+         1.3fr 和 0.9fr 代表左右比例
+         想让图片更大一点，可以把右边改大一点
+         例如：grid-template-columns: 1.2fr 1fr;
+      */
+      grid-template-columns: 1.3fr 0.9fr;
+
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+
+    .hero-text .label {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    /* 你的大名字，比如 ZHUO YU */
+    h1 {
+      margin: 0 0 14px;
+
+      /* ===== 这里改主标题大小 ===== */
+      font-size: 56px;
+
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+
+    /* 一句话介绍 */
+    .subtitle {
+      /* ===== 这里改副标题大小 ===== */
+      font-size: 22px;
+
+      color: #2a2a2a;
+      margin-bottom: 22px;
+      font-weight: 500;
+    }
+
+    /* 首页第一段介绍文字 */
+    .intro {
+      max-width: 640px;
+
+      /* ===== 这里改正文大小 ===== */
+      font-size: 18px;
+
+      color: #2b2b2b;
       margin-bottom: 28px;
     }
 
-    .footer {
-      margin-top: 70px;
-      font-size: 16px;
-      color: #666666;
+    /* 两个小按钮 */
+    .quick-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 820px) {
-      .top {
-        flex-direction: column;
+    .quick-links a {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #222222;
+      font-size: 15px;
+      background: #fff;
+      transition: 0.2s ease;
+    }
+
+    .quick-links a:hover {
+      text-decoration: none;
+      border-color: #cfcfcf;
+      background: var(--soft);
+    }
+
+    /* 右边照片盒子 */
+    .photo-box {
+      justify-self: end;
+
+      /* ===== 这里改照片整体显示宽度 =====
+         想让照片更大：340px 改成 380px
+         想让照片更小：340px 改成 280px
+      */
+      width: min(100%, 340px);
+    }
+
+    .photo-box img {
+      width: 100%;
+      display: block;
+      border-radius: 18px; /* 图片圆角 */
+
+      object-fit: cover;
+      background: var(--soft);
+    }
+
+    /* =========================
+       4. 各个分区：About / Projects 等
+       ========================= */
+
+    .section {
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+
+      /* 左边是小栏目标题，右边是正文 */
+      grid-template-columns: 180px 1fr;
+
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* 左边小栏目标题，比如 About / Projects */
+    .section-title {
+      font-size: 15px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-top: 4px;
+    }
+
+    .section-body {
+      min-width: 0;
+    }
+
+    .section-body p {
+      margin: 0 0 16px;
+
+      /* ===== 这里改分区正文大小 ===== */
+      font-size: 17px;
+
+      color: #222222;
+    }
+
+    /* =========================
+       5. Campus Life 三个小块
+       ========================= */
+
+    .campus-grid {
+      display: grid;
+
+      /* 三列布局
+         想改成两列：repeat(2, minmax(0, 1fr))
+         想改成一列：repeat(1, minmax(0, 1fr))
+      */
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .campus-item {
+      padding: 18px 18px 16px;
+      background: var(--soft);
+      border-radius: 14px;
+    }
+
+    .campus-item h3 {
+      margin: 0 0 10px;
+
+      /* ===== 这里改小标题大小 ===== */
+      font-size: 18px;
+
+      font-weight: 600;
+    }
+
+    .campus-item p {
+      margin: 0;
+
+      /* ===== 这里改小卡片正文大小 ===== */
+      font-size: 15px;
+
+      color: #444444;
+    }
+
+    /* =========================
+       6. Projects 项目部分
+       ========================= */
+
+    .project-list {
+      display: grid;
+      gap: 22px;
+    }
+
+    .project {
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .project h3 {
+      margin: 0 0 8px;
+
+      /* ===== 这里改项目标题大小 ===== */
+      font-size: 22px;
+
+      line-height: 1.35;
+    }
+
+    .project .meta {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 13px;
+      color: #444444;
+      background: var(--soft);
+      border-radius: 999px;
+      padding: 5px 10px;
+    }
+
+    /* =========================
+       7. Contact / Footer
+       ========================= */
+
+    .contact-list p {
+      margin: 0 0 10px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      margin-top: 40px;
+      padding-top: 20px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       8. 手机端适配
+       不太懂的话先别动这一部分
+       ========================= */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
       }
 
-      .photo {
-        width: 220px;
+      .photo-box {
+        justify-self: start;
+        width: 260px; /* 手机和平板时图片宽度 */
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .campus-grid {
+        grid-template-columns: 1fr;
       }
 
       h1 {
         font-size: 42px;
       }
 
-      .subtitle,
-      p,
-      li,
-      .nav {
-        font-size: 17px;
+      .subtitle {
+        font-size: 20px;
       }
 
-      h2 {
-        font-size: 26px;
+      .intro {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        gap: 12px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .photo-box {
+        width: 220px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <section class="top">
-      <div class="photo">
-        <img src="profile.jpg" alt="Zhuo Yu" />
-      </div>
+  <!-- =========================
+       顶部导航栏
+       ========================= -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <!-- 左上角小字：这里可以改 -->
+      <div class="brand">Personal Website</div>
 
-      <div class="intro">
+      <!-- 右上角导航栏：这里可以改文字 -->
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#campus">Campus Life</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- =========================
+         首页第一屏：名字 + 简介 + 照片
+         ========================= -->
+    <section class="hero">
+      <div class="hero-text">
+        <!-- 名字上面的小标签 -->
+        <div class="label">Zhuo Yu</div>
+
+        <!-- 你的大名字：这里改 -->
         <h1>ZHUO YU</h1>
-        <div class="subtitle">Cycling//Tennis//Study</div>
 
-        <div class="nav">
-          <a href="#about">About</a>
-          <a href="#campus">Campus Life</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+        <!-- 一句话介绍：这里改 -->
+        <div class="subtitle">A Student in Shanghai Maritime University</div>
+
+        <!-- 首页简介：这里改 -->
+        <div class="intro">
+          This website is a place where I introduce myself, record my university life,
+          and share some of the projects I have worked on. It is simple, personal,
+          and meant to grow with me over time.
         </div>
 
-        <p>
-          Hello, I’m Zhuo Yu, a student at Shanghai Maritime University.
-          This website is a simple place where I introduce myself, record my university life,
-          and share some of the projects I have worked on.
-        </p>
+        <!-- 小按钮 -->
+        <div class="quick-links">
+          <a href="#about">Read About Me</a>
+          <a href="#projects">View Projects</a>
+        </div>
+      </div>
 
-        <p>
-          For me, university is not only about classes and assignments,
-          but also about growth, experience, reflection, and learning how to move forward step by step.
-        </p>
+      <!-- 你的照片
+           如果你以后换图，只要把 profile.jpg 换成别的文件名
+           比如 campus.jpg
+      -->
+      <div class="photo-box">
+        <img src="profile.jpg" alt="Zhuo Yu" />
       </div>
     </section>
 
+    <!-- =========================
+         About
+         ========================= -->
     <section id="about" class="section">
-      <h2>About</h2>
-      <p>
-        I created this website to keep a record of my university journey.
-        It is both a personal introduction and a space to collect what I have learned,
-        what I have done, and what matters to me during these years.
-      </p>
-      <p>
-        I am interested in study, projects, and practical work.
-        I also hope to keep track of ordinary but meaningful moments in campus life.
-      </p>
+      <div class="section-head">
+        <div class="section-title">About</div>
+        <div class="section-body">
+          <p>
+            Hello, I’m Zhuo Yu, a student at Shanghai Maritime University.
+            I created this website as a personal space to collect the things that matter to me during university:
+            study, projects, experiences, and growth.
+          </p>
+          <p>
+            For me, university is not only about classes and assignments.
+            It is also about learning through practice, building new skills,
+            meeting challenges, and gradually becoming a more thoughtful and capable person.
+          </p>
+        </div>
+      </div>
     </section>
 
+    <!-- =========================
+         Campus Life
+         ========================= -->
     <section id="campus" class="section">
-      <h2>Campus Life</h2>
-      <ul>
-        <li>Daily life on campus, including study, routine, and small moments worth remembering.</li>
-        <li>Activities and experiences that made my university life more meaningful and memorable.</li>
-        <li>Personal growth, reflection, and the changes I have gone through over time.</li>
-      </ul>
+      <div class="section-head">
+        <div class="section-title">Campus Life</div>
+        <div class="section-body">
+          <div class="campus-grid">
+            <div class="campus-item">
+              <h3>Daily Routine</h3>
+              <p>
+                Study, library time, walking across campus, and the small moments that shape everyday university life.
+              </p>
+            </div>
+
+            <div class="campus-item">
+              <h3>Activities</h3>
+              <p>
+                Competitions, events, and experiences that make campus life more vivid, meaningful, and memorable.
+              </p>
+            </div>
+
+            <div class="campus-item">
+              <h3>Growth</h3>
+              <p>
+                Reflection, change, and the gradual process of understanding myself better through these years.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- =========================
+         Projects
+         ========================= -->
     <section id="projects" class="section">
-      <h2>Projects</h2>
-      <ul>
-        <li>
-          <strong>NO.1.</strong>
-          11
-        </li>
-        <li>
-          <strong>NO.2.</strong>
-          22
-        </li>
-      </ul>
+      <div class="section-head">
+        <div class="section-title">Projects</div>
+        <div class="section-body">
+          <div class="project-list">
+            <article class="project">
+              <h3>Optimal Controller Design for a Single Inverted Pendulum</h3>
+              <div class="meta">Course Project</div>
+              <p>
+                This project focused on state-space modeling and LQR controller design for a classical control system.
+                Through analysis and simulation, I explored how modern control methods can be applied to dynamic systems.
+              </p>
+              <div class="tags">
+                <span class="tag">Control Theory</span>
+                <span class="tag">LQR</span>
+                <span class="tag">Simulation</span>
+              </div>
+            </article>
+
+            <article class="project">
+              <h3>Traffic Light Control System Based on TMS320F28335</h3>
+              <div class="meta">Course Design</div>
+              <p>
+                This DSP-based project involved program structure analysis, control logic design,
+                and timing-based signal switching. It helped me better understand embedded systems
+                and the connection between software logic and hardware control.
+              </p>
+              <div class="tags">
+                <span class="tag">DSP</span>
+                <span class="tag">Embedded System</span>
+                <span class="tag">Program Design</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- =========================
+         Contact
+         ========================= -->
     <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p><strong>Name:</strong> Zhuo Yu</p>
-      <p><strong>School:</strong> Shanghai Maritime University</p>
-      <p><strong>GitHub:</strong> <a href="https://github.com/yuzhuo997" target="_blank">yuzhuo997</a></p>
-      <p><strong>Email:</strong> 202210210038@stu.shmtu.edu.cn</p>
+      <div class="section-head">
+        <div class="section-title">Contact</div>
+        <div class="section-body contact-list">
+          <p><strong>Name:</strong> Zhuo Yu</p>
+          <p><strong>School:</strong> Shanghai Maritime University</p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/yuzhuo997" target="_blank">yuzhuo997</a></p>
+
+          <!-- 这里改成你的真实邮箱 -->
+          <p><strong>Email:</strong> your-email@example.com</p>
+        </div>
+      </div>
     </section>
 
-    <div class="footer">
+    <!-- 页脚 -->
+    <footer class="footer">
       © 2026 Zhuo Yu
-    </div>
-  </div>
+    </footer>
+  </main>
 </body>
 </html>
