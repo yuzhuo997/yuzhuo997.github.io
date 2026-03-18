@@ -7,23 +7,19 @@
 
   <style>
     /* =========================
-       1. 基础设置
+       1. 全局设置
        ========================= */
     :root {
       --bg: #ffffff;
       --text: #111111;
-      --muted: #6b6b6b;
-      --line: #ebebeb;
+      --muted: #666666;
+      --line: #e8e8e8;
       --accent: #2f5d8a;
-      --max-width: 980px; /* 页面整体宽度，想更宽就改大一点 */
+      --max-width: 920px; /* 页面宽度，想更宽就改大一点 */
     }
 
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -45,140 +41,78 @@
 
     .wrap {
       max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px 72px;
+      margin: 64px auto;
+      padding: 0 24px 60px;
     }
 
     /* =========================
-       2. 顶部导航
+       2. 顶部简介区（CV风格）
        ========================= */
-    .topbar {
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 56px;
-    }
-
-    .topbar-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 18px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .brand {
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      font-size: 15px;
-      color: #333333;
-    }
-
-    /* =========================
-       3. 首页首屏
-       ========================= */
-    .hero {
+    .intro-block {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 44px;
-      align-items: center;
-      margin-bottom: 56px;
+      grid-template-columns: 180px 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 42px;
     }
 
-    .hero-text .label {
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      margin: 0 0 14px;
-      font-size: 52px; /* 改主标题大小 */
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      font-weight: 700;
-    }
-
-    .subtitle {
-      font-size: 22px; /* 改副标题大小 */
-      color: #2a2a2a;
-      margin-bottom: 22px;
-      font-weight: 500;
-    }
-
-    .intro {
-      font-size: 18px; /* 改首屏正文大小 */
-      color: #2b2b2b;
-      max-width: 620px;
-    }
-
-    .photo-box {
-      justify-self: end;
-      width: min(100%, 300px); /* 改图片大小 */
-    }
-
-    .photo-box img {
+    .photo img {
       width: 100%;
       display: block;
-      border-radius: 16px;
+      border-radius: 10px; /* 图片圆角，想更方就改小一点 */
       object-fit: cover;
     }
 
-    /* =========================
-       4. 分区
-       ========================= */
-    .section {
-      border-top: 1px solid var(--line);
-      padding: 28px 0;
+    h1 {
+      margin: 0 0 8px;
+      font-size: 44px; /* 名字大小 */
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
-    .section-head {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 24px;
-      align-items: start;
+    .role {
+      font-size: 20px; /* 身份介绍大小 */
+      color: #222222;
+      margin-bottom: 10px;
+      font-weight: 500;
     }
 
-    .section-title {
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .info-line {
+      font-size: 16px;
       color: var(--muted);
-      padding-top: 4px;
+      margin-bottom: 18px;
     }
 
-    .section-body p {
-      margin: 0 0 16px;
-      font-size: 17px; /* 改正文大小 */
+    .summary p {
+      margin: 0 0 14px;
+      font-size: 17px; /* 简介正文大小 */
       color: #222222;
     }
 
-    .item-list {
-      margin: 0;
-      padding-left: 18px;
+    /* =========================
+       3. 分区
+       ========================= */
+    .section {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      margin-top: 30px;
     }
 
-    .item-list li {
-      margin-bottom: 14px;
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 24px; /* 分区标题大小 */
+      font-weight: 700;
+    }
+
+    .section p {
+      margin: 0 0 14px;
       font-size: 17px;
       color: #222222;
     }
 
     .project {
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .project:last-child {
@@ -186,22 +120,23 @@
     }
 
     .project h3 {
-      margin: 0 0 8px;
-      font-size: 22px; /* 改项目标题大小 */
-      line-height: 1.35;
+      margin: 0 0 6px;
+      font-size: 20px; /* 项目标题大小 */
+      font-weight: 600;
+      line-height: 1.4;
     }
 
-    .project .meta {
+    .meta {
       font-size: 14px;
       color: var(--muted);
       margin-bottom: 8px;
     }
 
     .tags {
-      margin-top: 10px;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      margin-top: 10px;
     }
 
     .tag {
@@ -212,178 +147,137 @@
       padding: 4px 10px;
     }
 
-    .contact-list p {
-      margin: 0 0 10px;
-    }
-
     .footer {
       border-top: 1px solid var(--line);
       margin-top: 36px;
-      padding-top: 18px;
+      padding-top: 16px;
       font-size: 14px;
       color: var(--muted);
     }
 
     /* =========================
-       5. 手机适配
+       4. 手机适配
        ========================= */
-    @media (max-width: 860px) {
-      .hero {
+    @media (max-width: 720px) {
+      .intro-block {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 22px;
       }
 
-      .photo-box {
-        justify-self: start;
-        width: 240px;
-      }
-
-      .section-head {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      h1 {
-        font-size: 40px;
-      }
-
-      .subtitle {
-        font-size: 20px;
-      }
-
-      .intro,
-      .section-body p,
-      .item-list li {
-        font-size: 16px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
+      .photo {
+        width: 180px;
       }
 
       h1 {
         font-size: 34px;
       }
+
+      .role {
+        font-size: 18px;
+      }
+
+      .summary p,
+      .section p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- 顶部 -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">Personal Website</div>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#campus">Campus Life</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
   <main class="wrap">
-    <!-- 首页第一屏 -->
-    <section class="hero">
-      <div class="hero-text">
-        <div class="label">Zhuo Yu</div>
-        <h1>ZHUO YU</h1>
-        <div class="subtitle">A Student in Shanghai Maritime University</div>
-        <div class="intro">
-          This website is a place where I introduce myself, record my university life,
-          and share some of the projects I have worked on. It is simple, personal,
-          and meant to grow with me over time.
-        </div>
+
+    <!-- =========================
+         CV式简介：首页最上面
+         ========================= -->
+    <section class="intro-block">
+      <div class="photo">
+        <!-- 这里是照片文件名 -->
+        <img src="profile.jpg" alt="Zhuo Yu" />
       </div>
 
-      <div class="photo-box">
-        <img src="profile.jpg" alt="Zhuo Yu" />
+      <div>
+        <!-- 这里改名字 -->
+        <h1>ZHUO YU</h1>
+
+        <!-- 这里改一句身份介绍 -->
+        <div class="role">A Student in Shanghai Maritime University</div>
+
+        <!-- 这里改联系方式 -->
+        <div class="info-line">
+          202210210038@stu.shmtu.edu.cn &nbsp;|&nbsp;
+          <a href="https://github.com/yuzhuo997" target="_blank">GitHub</a>
+        </div>
+
+        <!-- 这里改顶部简介 -->
+        <div class="summary">
+          <p>
+            Hello, I’m Zhuo Yu, a student at Shanghai Maritime University.
+            This website serves as a simple personal page where I introduce myself,
+            record my university life, and present some of the projects I have worked on.
+          </p>
+          <p>
+            My interests include study, hands-on practice, and project-based learning.
+            I hope to use this space to keep track of both academic work and personal growth over time.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- About -->
-    <section id="about" class="section">
-      <div class="section-head">
-        <div class="section-title">About</div>
-        <div class="section-body">
-          <p>
-            Hello, I’m Zhuo Yu, a student at Shanghai Maritime University.
-            I created this website as a personal space to collect the things that matter to me during university:
-            study, projects, experiences, and growth.
-          </p>
-          <p>
-            For me, university is not only about classes and assignments.
-            It is also about learning through practice, building new skills,
-            meeting challenges, and gradually becoming a more thoughtful and capable person.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Campus Life -->
-    <section id="campus" class="section">
-      <div class="section-head">
-        <div class="section-title">Campus Life</div>
-        <div class="section-body">
-          <ul class="item-list">
-            <li>Daily routine on campus, including study, library time, and the ordinary moments of university life.</li>
-            <li>Activities and experiences that made my time at university more meaningful and memorable.</li>
-            <li>Personal growth, reflection, and the gradual changes I have gone through over time.</li>
-          </ul>
-        </div>
-      </div>
+    <section class="section">
+      <h2>About</h2>
+      <p>
+        I created this website as a personal record of my university journey.
+        For me, university is not only about classes and assignments,
+        but also about building skills, gaining experience, and understanding myself more clearly.
+      </p>
+      <p>
+        I am especially interested in learning through projects,
+        because practical work helps me connect theory with real problems in a more meaningful way.
+      </p>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="section">
-      <div class="section-head">
-        <div class="section-title">Projects</div>
-        <div class="section-body">
-          <article class="project">
-            <h3>Optimal Controller Design for a Single Inverted Pendulum</h3>
-            <div class="meta">Course Project</div>
-            <p>
-              This project focused on state-space modeling and LQR controller design for a classical control system.
-              Through analysis and simulation, I explored how modern control methods can be applied to dynamic systems.
-            </p>
-            <div class="tags">
-              <span class="tag">Control Theory</span>
-              <span class="tag">LQR</span>
-              <span class="tag">Simulation</span>
-            </div>
-          </article>
+    <section class="section">
+      <h2>Projects</h2>
 
-          <article class="project">
-            <h3>Traffic Light Control System Based on TMS320F28335</h3>
-            <div class="meta">Course Design</div>
-            <p>
-              This DSP-based project involved program structure analysis, control logic design,
-              and timing-based signal switching. It helped me better understand embedded systems
-              and the connection between software logic and hardware control.
-            </p>
-            <div class="tags">
-              <span class="tag">DSP</span>
-              <span class="tag">Embedded System</span>
-              <span class="tag">Program Design</span>
-            </div>
-          </article>
+      <article class="project">
+        <h3>Optimal Controller Design for a Single Inverted Pendulum</h3>
+        <div class="meta">Course Project</div>
+        <p>
+          This project focused on state-space modeling and LQR controller design for a classical control system.
+          Through analysis and simulation, I explored how control theory can be applied to dynamic systems.
+        </p>
+        <div class="tags">
+          <span class="tag">Control Theory</span>
+          <span class="tag">LQR</span>
+          <span class="tag">Simulation</span>
         </div>
-      </div>
+      </article>
+
+      <article class="project">
+        <h3>Traffic Light Control System Based on TMS320F28335</h3>
+        <div class="meta">Course Design</div>
+        <p>
+          This DSP-based project involved program structure analysis, control logic design,
+          and timing-based signal switching. It helped me better understand embedded systems
+          and the relationship between software logic and hardware control.
+        </p>
+        <div class="tags">
+          <span class="tag">DSP</span>
+          <span class="tag">Embedded System</span>
+          <span class="tag">Program Design</span>
+        </div>
+      </article>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="section-head">
-        <div class="section-title">Contact</div>
-        <div class="section-body contact-list">
-          <p><strong>Name:</strong> Zhuo Yu</p>
-          <p><strong>School:</strong> Shanghai Maritime University</p>
-          <p><strong>GitHub:</strong> <a href="https://github.com/yuzhuo997" target="_blank">yuzhuo997</a></p>
-          <p><strong>Email:</strong> 202210210038@stu.shmtu.edu.cn</p>
-        </div>
-      </div>
+    <section class="section">
+      <h2>Contact</h2>
+      <p><strong>Name:</strong> Zhuo Yu</p>
+      <p><strong>School:</strong> Shanghai Maritime University</p>
+      <p><strong>Email:</strong> 202210210038@stu.shmtu.edu.cn</p>
+      <p><strong>GitHub:</strong> <a href="https://github.com/yuzhuo997" target="_blank">yuzhuo997</a></p>
     </section>
 
     <footer class="footer">
