@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZHUO YU</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #1f2a44;
+      line-height: 1.6;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f2d52, #2f6fa3);
+      color: white;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 10px 0 8px;
+      font-size: 48px;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      font-size: 17px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 10px 18px;
+      border-radius: 999px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #103b66;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+    }
+
+    .campus-block,
+    .project {
+      margin-bottom: 22px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <img src="https://via.placeholder.com/180" alt="Zhuo Yu" class="profile-photo" />
+      <h1>ZHUO YU</h1>
+      <p class="subtitle">A Student in Shanghai Maritime University</p>
+      <p class="intro">
+        Welcome to my personal website. Here I share my university life,
+        academic projects, personal growth, and the moments that matter to me.
+      </p>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#campus">Campus Life</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p>
+        Hello, I’m Zhuo Yu, a student at Shanghai Maritime University.
+        I created this website as a place to introduce myself and record my university journey.
+        For me, university is not only about classes and assignments, but also about discovering
+        new interests, building practical skills, and growing through different experiences.
+      </p>
+    </section>
+
+    <section id="campus" class="card">
+      <h2>Campus Life</h2>
+
+      <div class="campus-block">
+        <h3>Daily Life on Campus</h3>
+        <p>
+          University life is made up of many ordinary but meaningful moments.
+          From classrooms and libraries to walks across campus, these daily experiences
+          shape my rhythm of study and life.
+        </p>
+      </div>
+
+      <div class="campus-block">
+        <h3>Activities and Experiences</h3>
+        <p>
+          Beyond classes, campus life also brings opportunities to join activities,
+          meet new people, and take part in meaningful experiences.
+        </p>
+      </div>
+
+      <div class="campus-block">
+        <h3>Growth and Reflection</h3>
+        <p>
+          University is also a stage of personal growth.
+          Every challenge and every step forward helps me better understand myself.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects" class="card">
+      <h2>Projects</h2>
+
+      <div class="project">
+        <h3>Optimal Controller Design for a Single Inverted Pendulum</h3>
+        <p>
+          A course project focused on state-space modeling and LQR controller design
+          for a classical control system.
+        </p>
+      </div>
+
+      <div class="project">
+        <h3>Traffic Light Control System Based on TMS320F28335</h3>
+        <p>
+          A DSP-based course design project involving program logic,
+          control flow analysis, and timing-based signal switching.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p>Email: your-email@example.com</p>
+      <p>GitHub: yuzhuo997</p>
+    </section>
+  </main>
+</body>
+</html>
