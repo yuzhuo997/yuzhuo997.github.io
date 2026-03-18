@@ -2,20 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- 让手机、平板也能正常显示 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 浏览器标签页显示的标题 -->
   <title>ZHUO YU</title>
 
   <style>
     /* =========================
        1. 全局设置
+       这里主要控制：
+       - 页面背景颜色
+       - 文字颜色
+       - 页面整体宽度
        ========================= */
     :root {
-      --bg: #ffffff;
-      --text: #111111;
-      --muted: #666666;
-      --line: #e8e8e8;
-      --accent: #2f5d8a;
-      --max-width: 1000px; /* 页面宽度，想更宽就改大一点 */
+      --bg: #ffffff;         /* 页面背景颜色 */
+      --text: #111111;       /* 主要文字颜色 */
+      --muted: #666666;      /* 次要文字颜色，比如小字说明 */
+      --line: #e8e8e8;       /* 分割线颜色 */
+      --accent: #2f5d8a;     /* 链接颜色 */
+      --max-width: 1000px;   /* 页面整体最大宽度，想更宽就改大一点 */
     }
 
     * {
@@ -26,10 +33,18 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
+
+      /* ===== 全站字体 =====
+         你现在用的是比较正式的 serif 字体
+         如果想换成更现代一点，可以改成：
+         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      */
       font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.75;
+
+      line-height: 1.75; /* 行距，数字越大，文字越松 */
     }
 
+    /* 全站所有链接样式 */
     a {
       color: var(--accent);
       text-decoration: none;
@@ -39,78 +54,86 @@
       text-decoration: underline;
     }
 
+    /* 整个页面内容的外层容器 */
     .wrap {
-      max-width: var(--max-width);
-      margin: 64px auto;
-      padding: 0 24px 60px;
+      max-width: var(--max-width); /* 页面宽度 */
+      margin: 64px auto;           /* 上下边距 64px，左右自动居中 */
+      padding: 0 24px 60px;        /* 左右留白 24px，底部留白 60px */
     }
 
     /* =========================
        2. 顶部简介区（CV风格）
+       这里控制最上方：
+       左边照片 + 右边名字/简介
        ========================= */
     .intro-block {
       display: grid;
+
+      /* 左边照片区域 180px，右边文字区域自适应 */
       grid-template-columns: 180px 1fr;
-      gap: 32px;
+
+      gap: 32px;              /* 照片和文字之间的距离 */
       align-items: start;
-      margin-bottom: 42px;
+      margin-bottom: 42px;    /* 顶部简介和下面内容之间的距离 */
     }
 
     .photo img {
-      width: 100%;
+      width: 100%;            /* 图片宽度占满左边容器 */
       display: block;
-      border-radius: 10px; /* 图片圆角，想更方就改小一点 */
+      border-radius: 10px;    /* 图片圆角，想更方一点就改小，比如 4px */
       object-fit: cover;
     }
 
     h1 {
       margin: 0 0 8px;
-      font-size: 44px; /* 名字大小 */
+      font-size: 44px;        /* ===== 名字大小：想更大就改这里 ===== */
       line-height: 1.1;
       font-weight: 700;
       letter-spacing: -0.02em;
     }
 
     .role {
-      font-size: 20px; /* 身份介绍大小 */
+      font-size: 20px;        /* ===== 身份介绍大小 ===== */
       color: #222222;
       margin-bottom: 10px;
       font-weight: 500;
     }
 
     .info-line {
-      font-size: 16px;
+      font-size: 16px;        /* 联系方式这一行的大小 */
       color: var(--muted);
       margin-bottom: 18px;
     }
 
     .summary p {
       margin: 0 0 14px;
-      font-size: 17px; /* 简介正文大小 */
+      font-size: 17px;        /* ===== 顶部简介正文大小 ===== */
       color: #222222;
     }
 
     /* =========================
-       3. 分区
+       3. 下面每个分区
+       比如 About / Projects / Contact
        ========================= */
     .section {
-      border-top: 1px solid var(--line);
-      padding-top: 22px;
-      margin-top: 30px;
+      border-top: 1px solid var(--line); /* 上方分割线 */
+      padding-top: 22px;                 /* 分割线到标题的距离 */
+      margin-top: 30px;                  /* 和上一个分区之间的距离 */
     }
 
     .section h2 {
       margin: 0 0 14px;
-      font-size: 24px; /* 分区标题大小 */
+      font-size: 24px;        /* ===== 分区标题大小，比如 About ===== */
       font-weight: 700;
     }
 
     .section p {
       margin: 0 0 14px;
-      font-size: 17px;
+      font-size: 17px;        /* ===== 普通正文大小 ===== */
       color: #222222;
     }
 
+    /* 每一个项目块 */
     .project {
       margin-bottom: 22px;
     }
@@ -121,17 +144,18 @@
 
     .project h3 {
       margin: 0 0 6px;
-      font-size: 20px; /* 项目标题大小 */
+      font-size: 20px;        /* ===== 项目标题大小 ===== */
       font-weight: 600;
       line-height: 1.4;
     }
 
     .meta {
-      font-size: 14px;
+      font-size: 14px;        /* Course Project / Course Design 这类小字 */
       color: var(--muted);
       margin-bottom: 8px;
     }
 
+    /* 项目下面的小标签 */
     .tags {
       display: flex;
       gap: 8px;
@@ -140,13 +164,14 @@
     }
 
     .tag {
-      font-size: 13px;
+      font-size: 13px;        /* 标签文字大小 */
       color: #555555;
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 4px 10px;
     }
 
+    /* 页脚 */
     .footer {
       border-top: 1px solid var(--line);
       margin-top: 36px;
@@ -157,19 +182,21 @@
 
     /* =========================
        4. 手机适配
+       屏幕变窄时自动调整
+       不太懂就先别改这一块
        ========================= */
     @media (max-width: 720px) {
       .intro-block {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* 手机上上下排，不再左右排 */
         gap: 22px;
       }
 
       .photo {
-        width: 180px;
+        width: 180px; /* 手机上图片宽度 */
       }
 
       h1 {
-        font-size: 34px;
+        font-size: 34px; /* 手机上名字会变小一点 */
       }
 
       .role {
@@ -187,28 +214,35 @@
   <main class="wrap">
 
     <!-- =========================
-         CV式简介：首页最上面
+         顶部简介区
+         左边：照片
+         右边：名字、身份、联系方式、简介
          ========================= -->
     <section class="intro-block">
       <div class="photo">
-        <!-- 这里是照片文件名 -->
+        <!-- ===== 这里改图片文件名 =====
+             你现在用的是 profile.jpg
+             如果以后换成别的，比如 myphoto.jpg
+             就把这里改成：
+             <img src="myphoto.jpg" alt="Zhuo Yu" />
+        -->
         <img src="profile.jpg" alt="Zhuo Yu" />
       </div>
 
       <div>
-        <!-- 这里改名字 -->
+        <!-- ===== 这里改名字 ===== -->
         <h1>ZHUO YU</h1>
 
-        <!-- 这里改一句身份介绍 -->
+        <!-- ===== 这里改一句简短身份介绍 ===== -->
         <div class="role">Student || Milk taster || Future millionaire</div>
 
-        <!-- 这里改联系方式 -->
+        <!-- ===== 这里改联系方式 ===== -->
         <div class="info-line">
           202210210038@stu.shmtu.edu.cn &nbsp;|&nbsp;
           <a href="https://github.com/yuzhuo997" target="_blank">GitHub</a>
         </div>
 
-        <!-- 这里改顶部简介 -->
+        <!-- ===== 这里改顶部简介文字 ===== -->
         <div class="summary">
           <p>
             Hello, I’m Zhuo Yu, a student at Shanghai Maritime University.
@@ -223,7 +257,10 @@
       </div>
     </section>
 
-    <!-- About -->
+    <!-- =========================
+         About 分区
+         这里写你对自己的更详细介绍
+         ========================= -->
     <section class="section">
       <h2>About</h2>
       <p>
@@ -237,10 +274,15 @@
       </p>
     </section>
 
-    <!-- Projects -->
+    <!-- =========================
+         Projects 分区
+         这里写你的项目
+         一个项目 = 一个 article class="project"
+         ========================= -->
     <section class="section">
       <h2>Projects</h2>
 
+      <!-- ===== 项目 1 ===== -->
       <article class="project">
         <h3>Optimal Controller Design for a Single Inverted Pendulum</h3>
         <div class="meta">Course Project</div>
@@ -255,6 +297,7 @@
         </div>
       </article>
 
+      <!-- ===== 项目 2 ===== -->
       <article class="project">
         <h3>Traffic Light Control System Based on TMS320F28335</h3>
         <div class="meta">Course Design</div>
@@ -271,7 +314,10 @@
       </article>
     </section>
 
-    <!-- Contact -->
+    <!-- =========================
+         Contact 分区
+         这里写联系方式
+         ========================= -->
     <section class="section">
       <h2>Contact</h2>
       <p><strong>Name:</strong> Zhuo Yu</p>
@@ -280,6 +326,7 @@
       <p><strong>GitHub:</strong> <a href="https://github.com/yuzhuo997" target="_blank">yuzhuo997</a></p>
     </section>
 
+    <!-- 页脚 -->
     <footer class="footer">
       © 2026 Zhuo Yu
     </footer>
